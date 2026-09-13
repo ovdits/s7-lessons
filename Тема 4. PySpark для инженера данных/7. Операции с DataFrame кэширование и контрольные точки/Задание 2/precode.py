@@ -34,10 +34,13 @@ columns_library = ['book_id', 'Library_id']
 
 # создаём датафреймы
 df = spark.createDataFrame(data=book, schema=columns)
-df_library  = spark.createDataFrame(data=library, schema=columns_library )
+df_library = spark.createDataFrame(data=library, schema=columns_library)
 
 # делаем join
-df_join = df.join(df_library,['book_id'], 'leftanti').select('title')
-df_cache= df_join.cache()
+df_join = df.join(df_library, ['book_id'], 'leftanti').select('title')
+df_cache = df_join.cache()
 
 # сделайте контрольную точку на df_cache
+spark.sparkContext.setCheckpointDir("/user/s7811785/analytics/test_check")
+df_cache.checkpoint().count()
+df_cache.explain()

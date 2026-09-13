@@ -5,9 +5,8 @@ spark = SparkSession.builder \
                     .master("local") \
                     .appName("Learning DataFrames") \
                     .getOrCreate()
-# данные первого датафрейма
-book = [
-        ('Harry Potter and the Goblet of Fire', 'J. K. Rowling', 322),
+# данные первого датафрейма 
+book = [('Harry Potter and the Goblet of Fire', 'J. K. Rowling', 322),
         ('Nineteen Eighty-Four', 'George Orwell', 382),
         ('Jane Eyre', 'Charlotte Brontë', 159),
         ('Catch-22', 'Joseph Heller',  174),
@@ -33,4 +32,7 @@ df = spark.createDataFrame(data=book, schema=columns)
 df_library = spark.createDataFrame(data=library, schema=columns_library)
 # напишите ваш код ниже
 df_joined = df.join(df_library, ['book_id'], how='anti')
-df_joined.select('title').count()
+df_joined.select('title')
+df_cashe = df_joined.cache()
+df_cashe.show(truncate=False)
+df_cashe.explain()

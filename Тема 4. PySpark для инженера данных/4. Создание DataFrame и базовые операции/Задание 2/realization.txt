@@ -1,2 +1,16 @@
 Замените эту строку результатом вывода, который требуется в задании.
 Сохраните исходное форматирование вывода без Markdown-ограждений.
++--------------------+------------+
+|               event|  event_type|
++--------------------+------------+
+|{null, null, 2022...|subscription|
+|{null, null, 2022...|subscription|
+|{null, null, 2022...|subscription|
+|{null, null, 2022...|subscription|
+|{null, null, 2022...|subscription|
+|{null, null, 2022...|subscription|
+|{null, null, 2022...|subscription|
+|{null, null, 2022...|subscription|
+|{null, null, 2022...|subscription|
+|{null, null, 2022...|subscription|
++--------------------+------------+

@@ -17,8 +17,8 @@ book = [('Harry Potter and the Goblet of Fire', 'J. K. Rowling', 322),
 ]
 # данные второго датафрейма
 library = [
-        ( 322, "1"),
-        ( 250, "2" ),
+        (322, "1"),
+        (250, "2"),
         (400, "2"),
         (159, "1"),
         (382, "2"),
@@ -29,5 +29,7 @@ columns = ['title', 'author', 'book_id']
 columns_library = ['book_id', 'Library_id']
 # создаём датафреймы
 df = spark.createDataFrame(data=book, schema=columns)
-df_library  = spark.createDataFrame(data=library, schema=columns_library )
+df_library = spark.createDataFrame(data=library, schema=columns_library)
 # напишите ваш код ниже
+df_joined = df.join(df_library, ['book_id'], how='anti')
+df_joined.select('title').show(truncate=False)

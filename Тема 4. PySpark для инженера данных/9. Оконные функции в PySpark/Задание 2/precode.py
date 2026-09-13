@@ -6,3 +6,4 @@ spark = SparkSession.builder \
                     .appName("Learning DataFrames") \
                     .getOrCreate()
 events = spark.read.json("/user/master/data/events/date=2022-05-01")
+events.printSchema()
