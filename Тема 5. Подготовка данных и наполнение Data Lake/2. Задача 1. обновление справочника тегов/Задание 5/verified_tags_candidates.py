@@ -5,12 +5,10 @@ import datetime
 
 import pyspark.sql.functions as F
 from pyspark.sql.window import Window
-import sys
 
 from pyspark import SparkContext, SparkConf
 from pyspark.sql import SQLContext
-import pyspark.sql.functions as F
-import datetime
+
 
 def main():
     date = sys.argv[1]
@@ -33,8 +31,7 @@ def main():
 
     candidates = find_candidates(messages, verified_tags, suggested_cutoff)
 
-    candidates.write.parquet(f"{base_output_path}/date={date}")
-    raise NotImplementedError("Соберите джобу из своего решения")
+    candidates.write.mode('overwrite').parquet(f'{base_output_path}/date={date}')
 
 
 def find_candidates(messages, verified_tags, suggested_cutoff):
